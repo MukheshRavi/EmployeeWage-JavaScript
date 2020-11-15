@@ -61,3 +61,15 @@ for(let day=0; day<NO_OF_WORKING_DAYS; day++)
 }
 empWage=empHrs*WAGE_PER_HOUR;
 console.log("Total Hrs: "+empHrs+" Employee Wage: "+empWage);
+// UC 5
+// Caqlculates employee wage for a maximmum of 100 hours
+const MAX_HRS_IN_MONTH=100;
+let totalEmpHrs=0;
+let totalWorkingDays=0;
+while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS)
+{
+    totalWorkingDays++;
+    totalEmpHrs += GetWorkingHours(empCheck);
+}
+empWage=totalEmpHrs*WAGE_PER_HOUR;
+console.log("Total No of Days: "+totalWorkingDays+" Total Hrs Worked: "+totalEmpHrs+ "Total Employee Wage: "+empWage);
