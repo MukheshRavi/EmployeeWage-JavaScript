@@ -33,3 +33,21 @@ switch (empCheck)
 }
 let empWage=empHrs*WAGE_PER_HOUR;
 console.log("Employee wage: "+empWage);
+//UC 3
+//Get working hours using function
+function GetWorkingHours(empCheck)
+{
+    switch(empCheck)
+    {
+        case IS_PART_TIME:
+            return PART_TIME_HOURS;
+            break;
+        case IS_FULL_TIME:
+            return FULL_TIME_HOURS;
+            break;
+        default:
+            return 0;
+    }
+}
+empHrs=GetWorkingHours(empCheck);
+console.log("Employee Wage: "+empHrs);
