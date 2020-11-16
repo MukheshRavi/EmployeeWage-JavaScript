@@ -66,10 +66,17 @@ console.log("Total Hrs: "+empHrs+" Employee Wage: "+empWage);
 const MAX_HRS_IN_MONTH=100;
 let totalEmpHrs=0;
 let totalWorkingDays=0;
+let dailyWages = [];
 while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS)
 {
     totalWorkingDays++;
-    totalEmpHrs += GetWorkingHours(empCheck);
+    dailyEmpHours = GetWorkingHours(empCheck);
+    totalEmpHrs += dailyEmpHours;
+    dailyWages.push(dailyEmpHours*WAGE_PER_HOUR);
 }
 empWage=totalEmpHrs*WAGE_PER_HOUR;
 console.log("Total No of Days: "+totalWorkingDays+" Total Hrs Worked: "+totalEmpHrs+ "Total Employee Wage: "+empWage);
+// UC6 
+//Store Daily Wage
+dailyWages.forEach(p=> console.log("DailyWage on day is "+ p));
+
