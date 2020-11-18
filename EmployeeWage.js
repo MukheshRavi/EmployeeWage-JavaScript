@@ -164,4 +164,20 @@ let absentDays = [...dailyWorkingHoursMap.keys()].filter(p => dailyWorkingHoursM
 console.log("9b Full time working days are : "+fullTimeWorkingDays);
 console.log("9b part time working days are : "+partTimeWorkingDays);
 console.log("9b absent days are : "+absentDays);
+// UC 
+//10 Ability to store all in a single object
+let empWageObjectArray = [];
+for(let day=0;day<NO_OF_WORKING_DAYS;day++)
+{
+    empWageObjectArray.push(
+    {
+        day : day+1,
+        dailyWage : (dailyWageDayMap.get(day+1)),
+        dailyHours : (dailyWorkingHoursMap.get(day+1)),
+        toString(){
+            return 'On day '+this.day+' => hours Worked: '+this.dailyHours +'  wageEarned: '+this.dailyWage;
+        },
+    });
+}
+empWageObjectArray.forEach(obj=> console.log(obj.toString()));
 
