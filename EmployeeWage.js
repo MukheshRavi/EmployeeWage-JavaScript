@@ -5,7 +5,6 @@ let empCheck=Math.floor(Math.random()*10)%2;
 if(empCheck==IS_ABSENT)
 {
     console.log("Employee is absent");
-    return;
 }
 else
 {
@@ -13,8 +12,8 @@ else
 }
 // UC 2
 //Calculates wage for employee
-const IS_PART_TIME=1;
-const IS_FULL_TIME=2;
+const IS_PART_TIME=0;
+const IS_FULL_TIME=1;
 const PART_TIME_HOURS=4;
 const FULL_TIME_HOURS=8;
 const WAGE_PER_HOUR=20;
@@ -28,8 +27,9 @@ switch (empCheck)
     case IS_FULL_TIME:
         empHrs=FULL_TIME_HOURS;
         break;
-    default:
+    case 2:
         empHrs=0;
+        break;
 }
 let empWage=empHrs*WAGE_PER_HOUR;
 console.log("Employee wage: "+empWage);
@@ -56,7 +56,7 @@ console.log("Employee Wage: "+empHrs);
 const NO_OF_WORKING_DAYS=20;
 for(let day=0; day<NO_OF_WORKING_DAYS; day++)
 {
-    let empCheck=Math.floor(Math.random()*10)%3;
+    empCheck=Math.floor(Math.random()*10)%3;
     empHrs+=GetWorkingHours(empCheck);
 }
 empWage=empHrs*WAGE_PER_HOUR;
@@ -67,10 +67,14 @@ const MAX_HRS_IN_MONTH=100;
 let totalEmpHrs=0;
 let totalWorkingDays=0;
 let dailyWages = [];
+let dailyWorkingHoursMap=new Map();
+
 while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS)
 {
+    empCheck=Math.floor(Math.random()*10)%3;
     totalWorkingDays++;
     dailyEmpHours = GetWorkingHours(empCheck);
+    dailyWorkingHoursMap.set(totalWorkingDays,dailyEmpHours);
     totalEmpHrs += dailyEmpHours;
     dailyWages.push(dailyEmpHours*WAGE_PER_HOUR);
 }
@@ -139,4 +143,25 @@ for([key,value] of dailyWageDayMap)
 console.log("UC 8 The wage of day "+key+" is "+value);
 //to display total wage using daily wages stored in map
 console.log("UC 8 Total Wage through Map is "+Array.from(dailyWageDayMap.values()).reduce(CalculateTotalWage));
+const findTotal=(totalValue,dailyValue)=>{totalValue += dailyValue;
+     return totalValue;}
+
+// UC 9a
+// Calculate total hours worked using map
+let totalEmpHrsFromMap = Array.from(dailyWorkingHoursMap.values()).reduce(findTotal,0);
+console.log("UC 9a Total emp hrs are : "+totalEmpHrsFromMap);
+
+// Calculate total wage using map
+let totalWageFromMap = Array.from(dailyWageDayMap.values()).reduce(findTotal,0);
+console.log("UC 9a Total emp wage are : "+totalWageFromMap);
+
+// UC 9b 
+// Show the full working days
+let fullTimeWorkingDays = [...dailyWorkingHoursMap.keys()].filter(p => dailyWorkingHoursMap.get(p) == FULL_TIME_HOURS);
+let partTimeWorkingDays = [...dailyWorkingHoursMap.keys()].filter(p => dailyWorkingHoursMap.get(p) == PART_TIME_HOURS);
+let absentDays = [...dailyWorkingHoursMap.keys()].filter(p => dailyWorkingHoursMap.get(p) == 0);
+
+console.log("9b Full time working days are : "+fullTimeWorkingDays);
+console.log("9b part time working days are : "+partTimeWorkingDays);
+console.log("9b absent days are : "+absentDays);
 
