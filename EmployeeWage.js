@@ -180,4 +180,30 @@ for(let day=0;day<NO_OF_WORKING_DAYS;day++)
     });
 }
 empWageObjectArray.forEach(obj=> console.log(obj.toString()));
+//UC 11
+// Calculate total wage and total emp hours using object
+let totalEmpHrsFromObject = empWageObjectArray.reduce((totalHrs,details)=>{return totalHrs+details.dailyHours;},0);
+
+let totalEmpWageFromObject = empWageObjectArray.reduce((totalWage,details)=>{return totalWage+details.dailyWage;},0);
+
+console.log("\n\nUC 11A Total Hours: " +totalEmpHrsFromObject+" Total Wage is : "+totalEmpWageFromObject); 
+
+// 11B show full time and part time seperately
+console.log("\nUC 11B Logging Full Work Days");
+empWageObjectArray.filter(empWageObjectArray => empWageObjectArray.dailyHours == FULL_TIME_HOURS) 
+                .forEach(empWageObjectArray =>console.log(empWageObjectArray.toString())); 
+
+// UC 11c shpw part time working hours
+let partWorkingDayStrArr = empWageObjectArray 
+                .filter(empWageObjectArray => empWageObjectArray.dailyHours == PART_TIME_HOURS) 
+                .map(p => p.toString()); 
+
+console.log("\nUC 11C PartWorkingDayStrings: "+ partWorkingDayStrArr); 
+//UC 11 D To show non working days
+let nonWorkingDayNums = empWageObjectArray 
+                .filter(empWageObjectArray => empWageObjectArray.dailyHours == 0) 
+                .map(empWageObjectArray => empWageObjectArray.day); 
+
+console.log("\nUC 11D NonWorkingDayNums: "+nonWorkingDayNums);
+
 
