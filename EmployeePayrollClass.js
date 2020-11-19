@@ -1,12 +1,43 @@
-// UC 13
-// Check Employee Name using regex 
+// UC 14
+// Check Employee Name,salary,id,gender,startdate using regex 
 class EmployeePayroll
 {
     // Properties
-    id;
-    salary;
-    gender;
-    startDate;
+    get id(){return this._id;};
+    set id(id)
+    {
+        let idRegex = RegExp("^[1-9][0-9]{0,}$");
+        if(idRegex.test(id))
+        this._id = id;
+        else
+        throw "Incorrect Id";
+    }
+    get salary(){return this._salary};
+    set salary(salary)
+    {
+        let salaryRegex = RegExp("^[1-9][0-9]{0,}$");
+        if(salaryRegex.test(salary))
+        this._salary = salary;
+        else
+        throw "Incorrect salary";
+    }
+    get gender(){return this._gender;}
+    set gender(gender)
+    {
+        let genderRegex = RegExp("^[MmFf]$");
+        if(genderRegex.test(gender))
+        this._gender = gender;
+        else
+        throw "Incorrect gender";
+    }
+    get startDate(){return this._startDate;}
+    set startDate(date)
+    {
+        if(date <= new Date())
+        this._startDate = date;
+        else
+        throw "Incorrect date";
+    }
 
     constructor(...params)
     {
