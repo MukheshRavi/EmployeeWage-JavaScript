@@ -144,7 +144,7 @@ console.log("UC 8 The wage of day "+key+" is "+value);
 //to display total wage using daily wages stored in map
 console.log("UC 8 Total Wage through Map is "+Array.from(dailyWageDayMap.values()).reduce(CalculateTotalWage));
 const findTotal=(totalValue,dailyValue)=>{totalValue += dailyValue;
-     return totalValue;}
+     return totalValue;}    
 
 // UC 9a
 // Calculate total hours worked using map
