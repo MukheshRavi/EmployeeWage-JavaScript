@@ -1,30 +1,34 @@
-//UC11
-// Create employee payroll data object
+// UC 12
+// Extend payroll object
 class EmployeePayroll
 {
     // Properties
     id;
     salary;
+    gender;
+    startDate;
 
-    constructor(id,name,salary)
+    constructor(...params)
     {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
+        this.id = params[0];
+        this.name = params[1];
+        this.salary = params[2];
+        this.gender = params[3];
+        this.startDate = params[4];
     }
 
     get name(){return this._name;}
-    set name(name)
-    {console.log("setting name through setter"); 
-    this._name = name;}
+    set name(name){console.log("in setter"); this._name = name;}
 
     toString()
     {
-        return "Id : "+this.id+" Name : "+this.name+" Salary : "+this.salary;
+       // const options = {year:'numeric', month:'numeric',day:'numeric'}
+        const empDate = this.startDate === undefined?"undefined":this.startDate.toLocaleDateString();
+        return "Id : "+this.id+" Name : "+this.name+" Salary : "+this.salary+" Gender : "+this.gender+" StartDate : "+empDate;
     }
 } 
 
 // Create instances of class
-let employee = new EmployeePayroll(1,"Mukhesh",50000);
+let employee = new EmployeePayroll(1,"Mukhesh",50000,'M',new Date());
 console.log("id : "+employee.id+" name : "+employee.name);
 console.log(employee.toString());
